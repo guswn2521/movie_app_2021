@@ -2,34 +2,22 @@ import React from "react";
 import PropTyes from "prop-types";
 
 class App extends React.Component {
-  constructor(props){
-    super(props);
-    console.log("hello");
-  }
   state = {
-    count:0
-  }
-  add = () =>{
-    this.setState(current => ({count: current.count +1}));
-    console.log("add");
+    isLoading: true,
+    movies : []
   };
-  minus = () =>{
-    this.setState(current => ({count: current.count - 1}));
-    console.log("minus");
-  };
+  
   componentDidMount(){
-    console.log("component rendered.");
+    setTimeout(() => {
+      this.setState({ isLoading : false});
+    }, 1000);
   }
-  componentDidUpdate(){
-    console.log("I just updated.");
-  }
+  
   render() {
-    console.log("I am rendering.");
-    return (
+    const {isLoading} = this.state;
+    return(
     <div>
-      <h1>The number is : {this.state.count} </h1>
-      <button onClick = {this.add}>Add</button>
-      <button onClick = {this.minus}>Minus</button>
+      {isLoading ? "Loading..." : "We are ready."}
     </div>
     )
   }
